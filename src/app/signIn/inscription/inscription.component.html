@@ -1,0 +1,91 @@
+<div class="container">
+    <div class="row justify-items-center mt-5">
+        <div class="col-md-3 col-sm-2"></div>
+        <div class="col-md-6 col-sm-8 col-xs-12">
+            <h1 class="inscrip-title">Inscription</h1>
+            <div class="img-path border-0 rounded-circle">
+                <img src="assets/images/ar-camera.png" class="imgStyle">
+            </div>
+            <!-- form start -->
+            <form class="mx-auto mt-5" [formGroup]="formulaire" autocomplete="off" (ngSubmit)="signInUser()" style="width: 40%;">
+
+                <!-- Choix du genre -->
+                <div class="form-group mb-4" [ngClass]="{'has-danger': civilite.invalid && (civilite.touched || civilite.dirty),
+                    'border border-success rounded': civilite.valid && (civilite.touched || civilite.dirty)}">
+                    <select class="form-control form-control-sm" formControlName="civilite" required>
+                            <option value="" selected hidden>CIVILITE</option>
+                            <option>H</option>
+                            <option>F</option>
+                        </select>
+                </div>
+                <span class="form-text form-muted text-danger" *ngIf="civilite.errors && (civilite.touched || civilite.dirty)">
+                        <p *ngIf="civilite.errors.required">ce champ est obligatoire</p>
+                    </span>
+
+                <!-- Input prenom -->
+                <div class="form-group mb-4" [ngClass]="{'has-danger': firstname.invalid && (firstname.touched || firstname.dirty),
+                    'border border-success rounded': firstname.valid && (firstname.touched || firstname.dirty)}">
+                    <input class="form-control form-control-sm" type="text" placeholder="prenom" name="firstname" id="firstname" formControlName="firstname">
+                </div>
+                <span class="form-text form-muted text-danger" *ngIf="firstname.errors && (firstname.touched || firstname.dirty)">
+                        <p *ngIf="firstname.errors.required">ce champ est obligatoire</p>
+                    </span>
+
+                <!-- Input nom -->
+                <div class="form-group mb-4" [ngClass]="{'has-danger': lastname.invalid && (lastname.touched || lastname.dirty),
+                    'border border-success rounded': lastname.valid && (lastname.touched || lastname.dirty)}">
+                    <input class="form-control form-control-sm" type="text" placeholder="nom" id="lastname" formControlName="lastname">
+                </div>
+
+                <span class="form-text form-muted text-danger" *ngIf="lastname.errors && (lastname.touched || lastname.dirty)">
+                        
+                        <p *ngIf="lastname.errors.required">ce champ est obligatoire</p>
+                    </span>
+
+                <!-- Input age -->
+                <div class="form-group mb-4" [ngClass]="{'has-danger': age.invalid && (age.touched || age.dirty),
+                                                             'border border-success rounded': age.valid && (age.touched || age.dirty)}">
+                    <input class="form-control form-control-sm" type="number" placeholder="age" id="age" formControlName="age">
+                </div>
+                <span class="form-text form-muted text-danger" *ngIf="age.errors && (age.touched || age.dirty)">
+                        <p *ngIf="age.errors.required">champ est obligatoire</p>
+                        <p *ngIf="age.errors.min">vous devez être majeur pour souscrire</p>
+                        <p *ngIf="age.errors.max">va évrire ton testament papy (ou mamy)</p>
+                    </span>
+
+                <!-- Input pseudo -->
+                <div class="form-group mb-4" [ngClass]="{'has-danger': username.invalid && (username.touched || username.dirty),
+                                'border border-success rounded': username.valid && (username.touched || username.dirty)}">
+                    <input class="form-control form-control-sm" type="text" placeholder="pseudo" id="username" formControlName="username">
+                </div>
+                <span class="form-text form-muted text-danger" *ngIf="username.errors && (username.touched || username.dirty)">
+                    <p *ngIf="username.errors.required">ce champ est obligatoire</p>
+                    <p *ngIf="username.errors.minlength">{{username.errors.minlength.requiredLength}} minimum requis</p>
+                    <p *ngIf="username.errors.maxlength">{{username.errors.maxlength.requiredLength}} maximum requis</p>
+                </span>
+                <span>
+                    <p class="form-text form-muted text-danger" *ngIf="!usrNameValide">pseudo déjà pris</p>
+                </span>
+
+                <!-- Input mdp -->
+                <div class="form-group mb-4" [ngClass]="{'has-danger': password.invalid && (password.touched || password.dirty),
+                                'border border-success rounded': password.valid && (password.touched || password.dirty)}">
+                    <input class="form-control form-control-sm" type="password" placeholder="mot de passe" name="password" id="pwd" formControlName="password">
+                </div>
+                <span class="form-text form-muted text-danger" *ngIf="password.errors && (password.touched || password.dirty)">
+                         <p *ngIf="password.errors.required">ce champ est obligatoire</p>
+                         <p *ngIf="password.errors.minlength">doit contenir au moins {{password.errors.minlength.requiredLength}} ({{ password.errors.minlength.requiredLength - password.errors.minlength.actualLength }} caractères restant) </p>
+                    </span>
+
+
+                <!-- Bouton de validation -->
+                <button class="d-block btn btn-sm buttonStyle mb-5 text-white" style="width: 120px; margin: auto;" type="submit" [disabled]="formulaire.invalid || !usrNameValide">
+                        S'incrire
+                    </button>
+
+            </form>
+            <!-- form end -->
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-2"></div>
+</div>

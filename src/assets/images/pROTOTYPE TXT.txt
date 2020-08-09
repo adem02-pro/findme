@@ -1,0 +1,91 @@
+			HEADER ( à reprendre pour toutes les pages)
+
+L: 1920  H: 80		#000000
+Taille LOGO  L: 130	H: 53.66
+
+MENU
+POLICE : LATO
+TAILLE : 20px
+ONGLET SELECTIONNE : #E0E0E0
+ONGLET NON SELECTIONNE : #7C7976
+
+Barre sous onglet selectionné 188x7px	#C6C6C6
+
+
+Couleur BACKGROUND : #272727
+Image de fond Accueil : opacité 60%
+LAISSEZ VOTRE MARQUE :  POLICE: Lato   46px  en GRAS  #E0E0E0
+Regroupez tous vos reseaux sociaux en un clic:  Lato   28px   en Light Italic  #E0E0E0
+
+Bouton Commencer : 
+Pas de fond-  	Bordure/contour : #FFFFFF  opacite 62%	arrondi à 21
+"Commencer": #FFFFFF 	police: Droid Serif   20px  GRAS
+
+
+PAGE 2 - 
+Photo de bannière : 1922,5x221,5
+Background : #272727
+"Identifiez-vous" :  Droid Serif  26px  GRAS ITALIC  #E0E0E0
+
+case Identifiant et Mot de passe:
+328x43px 	sans arrondi	#FFFFFF
+police:  Lato  20 px
+
+bouton Connexion:  199x44px	arrondi 21	#C6C6C6
+Police DROID Serif 20px
+
+
+FOOTER ( à reprendre pour les autres pages)
+
+L:1920x279 	#C6C6C6
+
+Case Email: 239x26px	Fond: #E3E3E3	Ombre: #000000 -> Opacité 16%
+Droid Serif  12px Italic  #272727
+
+Case votre message: 239x144px	Fond: #E3E3E3	Ombre: #000000 -> Opacité 16%
+Droid Serif  12px Italic  #272727
+
+Bouton Envoyer :
+
+68x26	sans fond	Bordure : #919191
+Droid Serif 12px Italic
+
+
+
+PAGE 3-
+
+Inscription : #E0E0E0	Droid Serif 26   Gras Italic
+
+Photo : Cercle 101x101  noir   bordure #E0E0E0  opacité 38%
+Logo photo  39x39 	Opacité 55%
+Logo + : 29x29px  #FFFFFF
+
+CASE FORMULAIRE: 328x43px  #FFFFFF
+texte: Lato 16px  Gras
+
+bouton s'inscrire #C6C6C6  199x44px  
+Droid Serif 20 bold
+
+
+PAGE 4
+
+
+Trouver un utilisateur : 26px  Droid Serif - Gras italic
+Barre de recherche : 254x31px contour #C6C6C6
+Lato  15px  Light italic
+logo search 20x20 opacité 68%
+
+Résulat recherche Personne:
+
+550.31x76.12px 	#646363
+taille cercle photo 62x62px
+Pseudo : Droid Serif 20px Italic #FFFFFF
+Voir la carte: Droid Serif 16px Italic #C6C6C6
+
+40 px d'intervalle entre chaque résultat
+
+
+Pour la carte je te laisse gérer comme j'ai pas les dimensions exactes - si t'as besoin tu me dis :)
+juste le logo x (remove) 14x14 px 
+
+

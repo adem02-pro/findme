@@ -1,0 +1,10 @@
+<section class="container row w-100 mx-auto">
+    <div class="other col-md-6 col-sm-12 col-lg-6 col-xs-12">
+        <app-other-user (emitUser)="emittedUser($event)"></app-other-user>
+    </div>
+
+    <div class="col-md-6 col-sm-12 col-lg-6 col-xs-12">
+        <!-- <app-admin-user></app-admin-user> -->
+        <app-other-user-profil *ngIf="selectedUser" [user]="selectedUser"></app-other-user-profil>
+    </div>
+</section>

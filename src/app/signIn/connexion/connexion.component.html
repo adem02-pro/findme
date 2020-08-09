@@ -1,0 +1,19 @@
+<section class="container">
+    <div class="mx-auto" style="width: 40%;">
+        <h3 class="h3Color">Identifiez-vous</h3>
+        <form [formGroup]="form" (ngSubmit)="login()" autocomplete="off">
+            <div class="row form-group justify-content-center mb-4">
+                <input class="border-0 form-control form-control-sm w-50" type="text" name="username" placeholder="Identifiant" formControlName="username">
+            </div>
+            <div class="row form-group justify-content-center">
+                <input class="border-0 form-control form-control-sm w-50" type="password" name="pwd" placeholder="Mot de passe" formControlName="pwd">
+            </div>
+            <button type="submit" class="d-block btn btn-sm buttonStyle mt-4 text-white" [disabled]="form.invalid" style="width: 120px; margin: auto;">
+                Connexion
+            </button>
+        </form>
+        <div class="SignInLink mb-5">
+            <a routerLink="/inscription" routerLinkActive="router-link-active" >s'inscrire</a>
+        </div>
+    </div>
+</section>

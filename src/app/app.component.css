@@ -1,0 +1,10 @@
+.jumbotron {
+    position: relative;
+    background-image: url("./../assets/images/clavier.jpg");
+    background-size: cover;
+    opacity: 0.5;
+    margin-bottom: 0px;
+    color: white;
+    border-radius: 0;
+    min-height: auto;
+}

@@ -1,0 +1,50 @@
+.container {
+    display: flex;
+    padding: 15px;
+    background-color: #c6c6c6;
+    justify-content: left;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    max-width: 100%;
+}
+
+.item-1 {
+    align-self: center;
+    text-align: center;
+}
+
+.item-2 form {
+    width: 40%;
+}
+
+.has-danger {
+    border: 1px solid red;
+    border-radius: 5px;
+}
+
+.has-success {
+    border: 1px solid green;
+    border-radius: 5px;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #3f151541;
+    font-style: italic;
+}
+
+@media only screen and (max-width: 767px) {
+    .item-1 {
+        display: none;
+    }
+
+    footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .item-2 form {
+        width: 60%;
+        margin: auto;
+    }
+}

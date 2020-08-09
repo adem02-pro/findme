@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "findme"
+    }
+  },
+  "defaultProject": "findme",
+  "cli": {
+    "analytics": "abf76f47-986f-4628-9c6c-c13decd47bcc"
+  }
 }
