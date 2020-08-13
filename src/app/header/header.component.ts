@@ -19,8 +19,7 @@ export class HeaderComponent implements OnInit {
     this.logService.logout().subscribe(
       () => {
         if(!this.logService.isLoggedIn) this.router.navigate([this.logService.redirectUrl]);
-      } 
+      }
     )
-     
   }
 }

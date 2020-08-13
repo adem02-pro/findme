@@ -1,68 +1,5 @@
-.nav-link {
-    color: white;
-    font-size: 20px;
-}
-
-header {
+nav{
     background-color: black;
-}
-
-@media only screen and (max-width: 575px) {
-    nav {
-        height: auto;
-    }
-    .nav-items {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-    }
-    .nav-item {
-        align-self: center;
-    }
-}
-
-@media only screen and (min-width: 576px) {
-    nav {
-        height: 50px;
-    }
-    .nav-items {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-    }
-    .nav-item {
-        margin-right: 15px;
-        align-self: flex-end;
-    }
-}
-
-@media only screen and (min-width: 768px) {
-    nav {
-        height: 50px;
-    }
-    .nav-items {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-    }
-    .nav-item {
-        margin-right: 15px;
-        align-self: flex-end;
-    }
-}
-
-@media only screen and (min-width: 992px) {
-    nav {
-        height: 50px;
-    }
-    .nav-items {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-    }
-    .nav-item {
-        align-self: flex-end;
-    }
 }
 
 a:hover {
@@ -70,23 +7,15 @@ a:hover {
     cursor: pointer;
 }
 
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-
-@media only screen and (min-width: 1200px) {
-    nav {
-        height: 50px;
-    }
-    .nav-items {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-    }
-    .nav-item {
-        align-self: flex-end;
-    }
-}
-
 .nav-item:hover {
     border-bottom: 4px solid white;
+}
+
+nav {
+    padding: 0.2em 2em 0;
+}
+
+li.nav-item a.nav-link {
+    color: white;
+    font-size: 20px;
 }

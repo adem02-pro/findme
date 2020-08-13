@@ -28,8 +28,7 @@ export class InscriptionComponent implements OnInit {
     ],
     password: ['', [Validators.required,
                     Validators.minLength(8)]
-    ],
-    civilite: ['', Validators.required]
+    ]
   })
 
   constructor(private fb: FormBuilder,
@@ -73,5 +72,4 @@ export class InscriptionComponent implements OnInit {
   get age() { return this.formulaire.get('age')};
   get username() { return this.formulaire.get('username')};
   get password() { return this.formulaire.get('password')};
-  get civilite() { return this.formulaire.get('civilite')};
 }

@@ -39,7 +39,9 @@ export class LogInService {
     if(this.verifyUer(users, usr, pwd)) {
       return of(true).pipe(
         delay(2000),
-        tap(bool => this.isLoggedIn = bool)
+        tap(bool => {
+          this.redirectUrl = '/profil'
+          this.isLoggedIn = bool})
       )
     }
     else return of(false)

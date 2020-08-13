@@ -1,26 +1,22 @@
-.container {
+div.row {
     display: flex;
-    padding: 15px;
-    background-color: #c6c6c6;
-    justify-content: left;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    max-width: 100%;
+    justify-content: center;
 }
+
 
 .item-1 {
     align-self: center;
     text-align: center;
 }
 
-.item-2 form {
-    width: 40%;
-}
-
 .has-danger {
     border: 1px solid red;
     border-radius: 5px;
+}
+
+form {
+    width: 350px;
+    padding: 15px 0;
 }
 
 .has-success {
@@ -37,14 +33,12 @@ input::placeholder, textarea::placeholder {
     .item-1 {
         display: none;
     }
-
-    footer {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .item-2 form {
-        width: 60%;
+    form {
+        width: 300px;
         margin: auto;
+    }
+    
+    div.item-2.col-8 {
+        max-width: 100%;
     }
 }
