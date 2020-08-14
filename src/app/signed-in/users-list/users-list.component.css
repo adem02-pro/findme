@@ -1,0 +1,48 @@
+.search-div {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+}
+
+.logoSearch {
+    padding: 5px 0 5px 10px;
+}
+
+ul {
+    padding: 0;
+}
+
+.container ul li {
+    height: 50px;
+    width: 70%;
+    margin: auto;
+    list-style-type: none;
+    border: 1px solid gray;
+    padding: 0;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.container ul li:hover {
+    background-color: gray;
+}
+
+.display-users {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    position: relative;
+    height: auto;
+}
+
+.display-users img {
+    position: absolute;
+    bottom: -43px;
+    left: 10px;
+}
+
+.display-users .username {
+    position: absolute;
+    left: 60px;
+    bottom: -50px;
+}

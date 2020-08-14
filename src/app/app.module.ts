@@ -14,11 +14,8 @@ import { CoverComponent } from './cover/cover.component';
 import { ConnexionComponent } from './signIn/connexion/connexion.component';
 import { InscriptionComponent } from './signIn/inscription/inscription.component';
 import { FooterComponent } from './footer/footer.component';
-import { AdminUserComponent } from './profils/admin-user/admin-user.component';
-import { OtherUserComponent } from './profils/other-user/other-user.component';
-import { UsersComponent } from './profils/users/users.component';
 import { ErrorComponentComponent } from './error-component/error-component.component';
-import { OtherUserProfilComponent } from './profils/other-user-profil/other-user-profil.component';
+import { ProfilModule } from './signed-in/profil.module';
 
 @NgModule({
   declarations: [
@@ -28,20 +25,17 @@ import { OtherUserProfilComponent } from './profils/other-user-profil/other-user
     ConnexionComponent,
     InscriptionComponent,
     FooterComponent,
-    AdminUserComponent,
-    OtherUserComponent,
-    UsersComponent,
-    ErrorComponentComponent,
-    OtherUserProfilComponent
+    ErrorComponentComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ProfilModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

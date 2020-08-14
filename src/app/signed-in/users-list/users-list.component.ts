@@ -1,16 +1,15 @@
-import { LogInService } from './../../services/log-in.service';
-import { User } from './../../model/user';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { Validators, FormControl } from '@angular/forms';
+import { User } from 'src/app/model/user';
+import { LogInService } from 'src/app/services/log-in.service';
 import { ActivatedRoute } from '@angular/router';
 
-
 @Component({
-  selector: 'app-other-user',
-  templateUrl: './other-user.component.html',
-  styleUrls: ['./other-user.component.css']
+  selector: 'app-users-list',
+  templateUrl: './users-list.component.html',
+  styleUrls: ['./users-list.component.css']
 })
-export class OtherUserComponent implements OnInit {
+export class UsersListComponent implements OnInit {
 
   search = new FormControl('', Validators.required);
   users: User[] = [];
@@ -33,4 +32,5 @@ export class OtherUserComponent implements OnInit {
   onSelect(user: User) {
     this.emitUser.emit(user);
   }
+
 }

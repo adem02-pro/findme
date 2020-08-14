@@ -1,0 +1,19 @@
+<h3 class="text-white">Trouver un utilisateur</h3>
+<form class="form-group">
+    <div class="search-div">
+        <input class="form-control form-control-sm" type="text" [formControl]="search" placeholder="Rechercher un profil">
+        <div class="logoSearch">
+            <img src="assets/images/search.png" alt="" style="width: 20px; height: 20px;">
+        </div>
+    </div>
+</form>
+<div class="container text-white">
+    <ul *ngFor="let user of users;">
+        <li class="container-fluid" (click)="onSelect(user)">
+            <div class="display-users">
+                <img style="display: block;" class="border border-0 rounded-circle" src="{{user.path}}" alt="" style="width: 40px; height: 40px;">
+                <p class="username">@{{user.username}}</p>
+            </div>
+        </li>
+    </ul>
+</div>

@@ -25,7 +25,7 @@ export class LogInService {
                 );
   }
 
-  getUser(id: number): Observable<User> {
+  getUser(id: number | string): Observable<User> {
     const url = this.url + '/' + id;
     return this.http.get<User>(url).pipe(
       catchError(err => {
@@ -41,7 +41,8 @@ export class LogInService {
         delay(2000),
         tap(bool => {
           this.redirectUrl = '/profil'
-          this.isLoggedIn = bool})
+          this.isLoggedIn = true;
+        })
       )
     }
     else return of(false)

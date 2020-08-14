@@ -1,0 +1,13 @@
+<section class="container">
+    <div class="row" style="margin: 20px 0;">
+        <div class="col-md">
+            <app-users-list (emitUser)="emittedUser($event)"></app-users-list>
+            <hr class="d-sm-none bg-light">
+        </div>
+
+        <div class="col-md">
+            <app-signed-user *ngIf="!selectedUser"></app-signed-user>
+            <app-user-profil [user]="selectedUser" *ngIf="selectedUser"></app-user-profil>
+        </div>
+    </div>
+</section>
