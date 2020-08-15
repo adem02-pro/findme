@@ -14,6 +14,7 @@ export class UsersListComponent implements OnInit {
   search = new FormControl('', Validators.required);
   users: User[] = [];
   @Output() emitUser = new EventEmitter<User>();
+  @Output() showUserProfil = new EventEmitter<boolean>();
 
   constructor(private usersService: LogInService,
               private route: ActivatedRoute,
@@ -31,6 +32,7 @@ export class UsersListComponent implements OnInit {
 
   onSelect(user: User) {
     this.emitUser.emit(user);
+    this.showUserProfil.emit(true);
   }
 
 }

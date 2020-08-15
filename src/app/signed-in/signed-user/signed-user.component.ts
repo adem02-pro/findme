@@ -1,4 +1,6 @@
+import { LogInService } from 'src/app/services/log-in.service';
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/model/user';
 
 @Component({
   selector: 'app-signed-user',
@@ -6,11 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./signed-user.component.css']
 })
 export class SignedUserComponent implements OnInit {
-
   
-  constructor() { }
+  connectedUser: User;
+  
+  constructor(private logService: LogInService) { }
 
   ngOnInit(): void {
+    this.connectedUser = this.logService.connectedUser;
   }
 
 }

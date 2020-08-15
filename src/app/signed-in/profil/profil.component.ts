@@ -11,6 +11,7 @@ export class ProfilComponent implements OnInit {
   
   users: User[];
   selectedUser: User;
+  userProfilShown: boolean = false;
 
   constructor(private logService: LogInService) { }
 
@@ -18,5 +19,13 @@ export class ProfilComponent implements OnInit {
 
   emittedUser(user: User) {
     this.selectedUser = user;
+  }
+
+  emittedClose(bool: boolean) {
+    this.userProfilShown = bool;
+  }
+
+  showUser(show: boolean) {
+    this.userProfilShown = show;
   }
 }

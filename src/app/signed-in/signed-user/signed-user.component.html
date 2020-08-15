@@ -1,17 +1,17 @@
 <div class="container">
-    <h3 class="text-white mb-4 text-center">Pseudo utilisateur</h3>
+    <h3 class="text-white mb-4 text-center">@{{connectedUser.username}}</h3>
     <div class="card-container">
         <div class="card">
             <div class="front">
                 <div class="cover">
-                    <img src="../../../assets/images/degrade.png">
+                    <img src="assets/images/degrade.png">
                 </div>
                 <div class="user">
                     <img class="img-circle" src="">
                 </div>
                 <div class="content">
                     <div class="main">
-                        <h3 class="name">DEM Ahmed</h3>
+                        <h3 class="name">{{connectedUser.lastname}} {{connectedUser.firstname}}</h3>
                         <p class="profession"></p>
                         <p class="text-center"></p>
                     </div>
@@ -27,7 +27,7 @@
                 </div>
                 <div class="content">
                     <div class="main">
-                        <h4 class="text-center">Age ans</h4>
+                        <h4 class="text-center">{{connectedUser.age}}</h4>
                         <p class="text-center"></p>
 
                         <div class="stats-container">
@@ -54,10 +54,8 @@
                     </div>
                 </div>
                 <div class="footer">
-                    <div class="social-links text-center">
-                        <a href="https://creative-tim.com" class="facebook"><i class="fa fa-facebook fa-fw"></i></a>
-                        <a href="https://creative-tim.com" class="google"><i class="fa fa-google-plus fa-fw"></i></a>
-                        <a href="https://creative-tim.com" class="twitter"><i class="fa fa-twitter fa-fw"></i></a>
+                    <div style="display: flex; justify-content: center;">
+                        <button class="btn btn-primary">Editer</button>
                     </div>
                 </div>
             </div>

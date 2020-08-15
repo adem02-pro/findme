@@ -12,6 +12,7 @@ export class LogInService {
   private url = 'api/users';
   isLoggedIn = false;
   redirectUrl: string;
+  connectedUser: User;
 
   constructor(private http: HttpClient) { }
 
@@ -36,7 +37,7 @@ export class LogInService {
   }
 
   login(users:User[], usr: string, pwd: string): Observable<boolean> {
-    if(this.verifyUer(users, usr, pwd)) {
+    if(this.connectedUser = this.verifyUer(users, usr, pwd)) {
       return of(true).pipe(
         delay(2000),
         tap(bool => {
@@ -53,12 +54,13 @@ export class LogInService {
       delay(500),
       tap(bool => {
         this.isLoggedIn = false;
+        this.redirectUrl = '/connexion';
       })
     )
   }
 
-  verifyUer(users: User[], usr:string, pwd:string): boolean{
+  verifyUer(users: User[], usr:string, pwd:string): User{
     const yUser = (user: User) => user.username === usr && user.pwd === pwd;
-    return users.some(yUser);
+    return users.find(yUser);
   }
 }

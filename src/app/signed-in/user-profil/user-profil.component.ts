@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { User } from 'src/app/model/user';
 
 @Component({
@@ -9,6 +9,7 @@ import { User } from 'src/app/model/user';
 export class UserProfilComponent implements OnInit {
 
   @Input() user: User;
+  @Output() showUserProfil = new EventEmitter<boolean>();
 
   constructor() { }
 
@@ -16,4 +17,7 @@ export class UserProfilComponent implements OnInit {
     console.log(this.user);
   }
 
+  close() {
+    this.showUserProfil.emit(false);
+  }
 }
