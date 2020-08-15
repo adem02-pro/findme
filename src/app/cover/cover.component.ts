@@ -1,3 +1,4 @@
+import { LogInService } from 'src/app/services/log-in.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cover.component.css']
 })
 export class CoverComponent implements OnInit {
-
-  constructor() { }
+  url: string;
+  linkName: string
+  constructor(private logService: LogInService) { }
 
   ngOnInit(): void {
+    this.url = this.logService.isLoggedIn ? "/profil" : "/connexion";
+    this.linkName = this.logService.isLoggedIn ? "profil" : "commencer"
   }
+  
 
 }
