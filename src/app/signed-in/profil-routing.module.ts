@@ -1,10 +1,12 @@
+import { DetailComponent } from './detail/detail.component';
 import { ProfilComponent } from './profil/profil.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
-  {path: 'profil', component: ProfilComponent}
+  {path: 'profil', component: ProfilComponent},
+  {path: 'detail/:id', component: DetailComponent}
 ];
 
 @NgModule({

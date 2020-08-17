@@ -15,6 +15,5 @@ export class CoverComponent implements OnInit {
     this.url = this.logService.isLoggedIn ? "/profil" : "/connexion";
     this.linkName = this.logService.isLoggedIn ? "profil" : "commencer"
   }
-  
 
 }
