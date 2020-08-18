@@ -12,10 +12,10 @@ import { DetailComponent } from './detail/detail.component';
 
 @NgModule({
   declarations: [
-    ProfilComponent, 
-    SignedUserComponent, 
-    UsersListComponent, 
-    UserProfilComponent, 
+    ProfilComponent,
+    SignedUserComponent,
+    UsersListComponent,
+    UserProfilComponent,
     DetailComponent
   ],
   imports: [

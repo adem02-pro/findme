@@ -8,11 +8,47 @@ import { InMemoryDbService } from 'angular-in-memory-web-api';
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const users: User[] = [
-      {id: 1, firstname: "Ahmed", lastname: "DEM", age: 25, username: "lalodem", pwd: "adem", path: "assets/images/profile-img.JPG"},
-      {id: 2, firstname: "Ibou", lastname: "DEM", age: 28, username: "bronx", pwd: "bronx"},
-      {id: 3, firstname: "Mariam", lastname: "BARRY", age: 18, username: "riam", pwd: "riam", path: "assets/images/profile-img4.JPG"},
-      {id: 4, firstname: "Almamy", lastname: "BARRY", age: 19, username: "mamy", pwd: "mamy"},
-      {id: 5, firstname: "Pauline", lastname: "Santa", age: 45, username: "popo", pwd: "popo"}
+      {id: 1, firstname: "Ahmed", lastname: "DEM", age: 25, username: "lalodem", pwd: "adem", path: "assets/images/profile-img.JPG",
+       reseaux:
+       {facebook: {value: 'Facebook', reseau: ''},
+       instagram: {value: 'Instagram', reseau: ''},
+       mail: {value: 'Mail', reseau: ''},
+       twitter: {value: 'Twitter', reseau: ''},
+       snapchat: {value: 'Snap', reseau: ''},
+        youtube: {value: 'Youtube', reseau: ''}
+      }},
+      {id: 2, firstname: "Ibou", lastname: "DEM", age: 28, username: "bronx", pwd: "bronx",
+      reseaux:  {facebook: {value: 'Facebook', reseau: ''},
+       instagram: {value: 'Instagram', reseau: ''},
+       mail: {value: 'Mail', reseau: ''},
+       twitter: {value: 'Twitter', reseau: ''},
+       snapchat: {value: 'Snap', reseau: ''},
+        youtube: {value: 'Youtube', reseau: ''}
+      }},
+      {id: 3, firstname: "Mariam", lastname: "BARRY", age: 18, username: "riam", pwd: "riam", path: "assets/images/profile-img4.JPG",
+      reseaux:  {facebook: {value: 'Facebook', reseau: ''},
+       instagram: {value: 'Instagram', reseau: ''},
+       mail: {value: 'Mail', reseau: ''},
+       twitter: {value: 'Twitter', reseau: ''},
+       snapchat: {value: 'Snap', reseau: ''},
+        youtube: {value: 'Youtube', reseau: ''}
+      }},
+      {id: 4, firstname: "Almamy", lastname: "BARRY", age: 19, username: "mamy", pwd: "mamy",
+      reseaux:  {facebook: {value: 'Facebook', reseau: ''},
+       instagram: {value: 'Instagram', reseau: ''},
+       mail: {value: 'Mail', reseau: ''},
+       twitter: {value: 'Twitter', reseau: ''},
+       snapchat: {value: 'Snap', reseau: ''},
+        youtube: {value: 'Youtube', reseau: ''}
+      }},
+      {id: 5, firstname: "Pauline", lastname: "Santa", age: 45, username: "popo", pwd: "popo",
+      reseaux:  {facebook: {value: 'Facebook', reseau: ''},
+       instagram: {value: 'Instagram', reseau: ''},
+       mail: {value: 'Mail', reseau: ''},
+       twitter: {value: 'Twitter', reseau: ''},
+       snapchat: {value: 'Snap', reseau: ''},
+        youtube: {value: 'Youtube', reseau: ''}
+      }}
     ];
     return {users};
   }

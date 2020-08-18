@@ -1,0 +1,132 @@
+section {
+    width: 90%;
+    margin: 50px auto 50px;
+}
+
+.nav-item .nav-link {
+    border-radius: 0;
+}
+
+.tablink:hover {
+    background-color: #777;
+}
+
+
+/* Style the tab content (and add height:100% for full page content) */
+
+.has-danger,
+.invalid-danger {
+    border: 1px solid red;
+    border-radius: 5px;
+}
+
+.has-success {
+    border: 1px solid green;
+    border-radius: 5px;
+}
+
+span.form-text {
+    margin-top: -25px;
+    font-size: 12px;
+}
+
+.buttonStyle {
+    background-color: #c6c6c6;
+    padding-top: 0px;
+    padding-bottom: 2px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: 'Lato';
+}
+
+input::placeholder {
+    color: #3f151541;
+    font-style: italic;
+}
+
+.nav-pills .nav-link.active,
+div.tab-content {
+    background-color: #21A0AD;
+}
+
+div.tab-content {
+    height: 300px;
+    padding: 40px 0;
+    box-sizing: border-box;
+}
+
+div.tab-pane.container {
+    width: 250px;
+}
+
+div#description.tab-pane.container {
+    width: 300px;
+}
+
+div#reseaux.tab-pane.container {
+    width: 40%;
+    min-width: 400px;
+    margin: auto;
+}
+
+div#reseaux.tab-pane.container div.input-group.mb-3 {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+div#reseaux.tab-pane.container div.input-group select.custom-select {
+    display: block;
+    max-width: 150px;
+    min-width: 100px;
+    margin: 0 3px;
+}
+
+div#reseaux.tab-pane.container div.input-group div.plus-img,
+div#reseaux.tab-pane.container div.input-group div.form {
+    margin: 0 3px;
+}
+
+@media only screen and (max-width: 767px) {
+    section {
+        width: 100%;
+        margin: 50px auto 50px;
+    }
+    div.tab-pane.container {
+        width: 200px;
+        margin: auto;
+    }
+    div#reseaux.tab-pane.container div.input-group.mb-3 {
+        width: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        margin: 0 3px;
+    }
+    div#reseaux.tab-pane.container {
+        width: 70%;
+        min-width: 300px;
+        margin: auto;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    section {
+        width: 100%;
+        margin: 50px auto 50px;
+    }
+    div.tab-pane.container {
+        width: 200px;
+        margin: auto;
+    }
+    div#reseaux.tab-pane.container div.input-group.mb-3 {
+        width: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        margin: 0 3px;
+    }
+    div#reseaux.tab-pane.container,
+    div#reseaux.tab-pane.container div.container.overflow-auto {
+        width: 100%;
+        margin: auto;
+    }
+}

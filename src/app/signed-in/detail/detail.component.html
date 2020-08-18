@@ -1,0 +1,132 @@
+<section>
+    <div class="container-fluid">
+        <ul class="nav nav-pills nav-justified">
+            <li class="nav-item">
+                <a class="nav-link active infos-style" data-toggle="pill" href="#infos">Mes informations</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link reseaux-style" data-toggle="pill" href="#reseaux">Mes réseaux</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link description-style" data-toggle="pill" href="#description">Ma description</a>
+            </li>
+        </ul>
+
+        <form [formGroup]="formulaire" autocomplete="off" (ngSubmit)="signInUser()">
+            <!-- Tab panes -->
+            <div class="tab-content">
+
+                <!-- info form -->
+                <div class="tab-pane container active" id="infos">
+
+                    <!-- Input prenom -->
+                    <div class="form-group" [ngClass]="{'has-danger': firstname.invalid && (firstname.touched || firstname.dirty),
+                                                      'border border-success rounded': firstname.valid && (firstname.touched || firstname.dirty)}">
+                        <input class="form-control form-control-sm" type="text" placeholder="prenom" name="firstname" id="firstname" formControlName="firstname">
+                    </div>
+                    <span class="form-text form-muted text-danger" *ngIf="firstname.errors && (firstname.touched || firstname.dirty)">
+                    <p *ngIf="firstname.errors.required">ce champ est obligatoire</p>
+                  </span>
+
+                    <!-- Input nom -->
+                    <div class="form-group" [ngClass]="{'has-danger': lastname.invalid && (lastname.touched || lastname.dirty),
+                                                      'border border-success rounded': lastname.valid && (lastname.touched || lastname.dirty)}">
+                        <input class="form-control form-control-sm" type="text" placeholder="nom" id="lastname" formControlName="lastname">
+                    </div>
+
+                    <span class="form-text form-muted text-danger" *ngIf="lastname.errors && (lastname.touched || lastname.dirty)">
+                    <p *ngIf="lastname.errors.required">ce champ est obligatoire</p>
+                  </span>
+
+                    <!-- Input age -->
+                    <div class="form-group" [ngClass]="{'has-danger': age.invalid && (age.touched || age.dirty),
+                                                      'border border-success rounded': age.valid && (age.touched || age.dirty)}">
+                        <input class="form-control form-control-sm" type="number" placeholder="age" id="age" formControlName="age">
+                    </div>
+                    <span class="form-text form-muted text-danger" *ngIf="age.errors && (age.touched || age.dirty)">
+                    <p *ngIf="age.errors.required">champ est obligatoire</p>
+                    <p *ngIf="age.errors.min">vous devez être majeur pour souscrire</p>
+                    <p *ngIf="age.errors.max">va évrire ton testament papy (ou mamy)</p>
+                  </span>
+
+                    <!-- Input pseudo -->
+                    <div class="form-group" [ngClass]="{'has-danger': username.invalid && (username.touched || username.dirty),
+                        'border border-success rounded': username.valid && (username.touched || username.dirty)}">
+                        <input class="form-control form-control-sm" type="text" placeholder="pseudo" id="username" formControlName="username">
+                    </div>
+
+                    <!-- Input mdp -->
+                    <div class="form-group" [ngClass]="{'has-danger': password.invalid && (password.touched || password.dirty),
+                        'border border-success rounded': password.valid && (password.touched || password.dirty)}">
+                        <input class="form-control form-control-sm" type="password" placeholder="mot de passe" name="password" id="pwd" formControlName="password">
+                    </div>
+                    <span class="form-text form-muted text-danger" *ngIf="password.errors && (password.touched || password.dirty)">
+                    <p *ngIf="password.errors.required">ce champ est obligatoire</p>
+                    <p *ngIf="password.errors.minlength">doit contenir au moins {{password.errors.minlength.requiredLength}} ({{ password.errors.minlength.requiredLength - password.errors.minlength.actualLength }} caractères restant) </p>
+                  </span>
+                </div>
+                <!-- end info form -->
+
+                <!-- reseaux form -->
+                <div class="tab-pane container fade" id="reseaux">
+                    <div class="input-group mb-3">
+                        <select class="custom-select">
+                          <option selected disabled>...</option>
+                          <option class="dropdown-item" *ngFor="let reseau of reseauxTab; let i=index">
+                            {{reseau.value}}
+                          </option>
+                        </select>
+                        <div class="form">
+                            <input class="form-control" type="text" placeholder="ex: lalodem">
+                        </div>
+                        <div class="plus-img">
+                            <img src="./../../../assets/images/plus.png" alt="" style="width: 30px; height: 30px">
+                        </div>
+                    </div>
+
+                    <div class="container overflow-auto" style="max-height: 250px; box-sizing: border-box;">
+                        <table class="table table-dark table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Réseau</th>
+                                    <th>Pseudo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>icone</td>
+                                    <td>ggggggggggggggggggggfffffffff</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- end reseaux form -->
+
+                <!-- description form -->
+                <div class="tab-pane container fade" id="description">
+                    <div class="text-area form-group">
+                        <textarea class="form-control" rows="5" id="comment" placeholder="Vous pouvez mettre votre description ici (maximum 100 caractères)"></textarea>
+                    </div>
+                </div>
+                <!-- end description form -->
+
+            </div>
+        </form>
+    </div>
+</section>
+
+
+<!-- <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
+                        Réseaux
+                      </button>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-item" *ngFor="let reseau of reseauxTab; let i=index">
+                                    {{reseau.value}}
+                                </li>
+                            </ul>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Username">
+                    </div> -->
