@@ -50,13 +50,19 @@ div.tab-content {
 }
 
 div.tab-content {
-    height: 300px;
+    height: 400px;
     padding: 40px 0;
     box-sizing: border-box;
+    position: relative;
 }
 
 div.tab-pane.container {
     width: 250px;
+}
+
+div.button button {
+    position: absolute;
+    bottom: 10px;
 }
 
 div#description.tab-pane.container {
@@ -129,4 +135,27 @@ div#reseaux.tab-pane.container div.input-group div.form {
         width: 100%;
         margin: auto;
     }
+}
+
+
+/* icons style */
+
+i.facebook {
+    color: blue;
+}
+
+i.insta {
+    color: #e95950
+}
+
+i.snap {
+    color: yellow;
+}
+
+i.twitter {
+    color: rgb(113, 113, 219);
+}
+
+i.youtube {
+    color: red;
 }

@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { UpdateServiceService } from './../../services/update-service.service';
 import { LogInService } from 'src/app/services/log-in.service';
 import { SignInService } from './../../services/sign-in.service';
@@ -15,7 +16,7 @@ export class DetailComponent implements OnInit {
 
   usrNameValide: boolean = true;
   user: User;
-  reseauxTab: any[];
+  reseauxTab: {value: string, reseau: string}[];
 
   formulaire = this.fb.group ({
     firstname: ['', Validators.required],
@@ -31,7 +32,9 @@ export class DetailComponent implements OnInit {
     ],
     password: ['', [Validators.required,
                     Validators.minLength(8)]
-    ]
+    ],
+    reseau: [''],
+    reseauInput: ['']
   })
 
   constructor(private fb: FormBuilder,
@@ -44,17 +47,6 @@ export class DetailComponent implements OnInit {
     this.setInfoValues();
     this.reseauxTab = this.updateService.reseauxToTab(this.user);
     console.log(this.reseauxTab);
-  }
-
-  isUsrValid() {
-    this.username.valueChanges
-    .pipe(debounceTime(150))
-    .subscribe(
-      (usr) => {
-        this.inscriptionService.verifyUsrNameValidity(usr)
-        .subscribe(data => this.usrNameValide = data)
-      }
-    )
   }
 
   setInfoValues() {
@@ -72,7 +64,24 @@ export class DetailComponent implements OnInit {
   get age() { return this.formulaire.get('age')};
   get username() { return this.formulaire.get('username')};
   get password() { return this.formulaire.get('password')};
+  get reseau() { return this.formulaire.get('reseau')};
+  get reseauInput() { return this.formulaire.get('reseauInput')};
 
   signInUser() {}
 
+
+  addReseau() {
+    if (this.reseau.value && this.reseauInput.value)
+    {
+      const indexFound = (element: {value: string, reseau: string}) => element.value === this.reseau.value
+      let i = this.reseauxTab.findIndex(indexFound);
+      this.reseauxTab[i].reseau = this.reseauInput.value;
+    }
+  }
 }
+// <i class="fab fa-facebook-square"></i>
+// <i class="fab fa-instagram-square"></i>
+// <i class="fas fa-envelope-square"></i>
+// <i class="fab fa-snapchat-square"></i>
+// <i class="fab fa-twitter-square"></i>
+// <i class="fab fa-youtube-square"></i>

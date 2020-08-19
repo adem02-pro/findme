@@ -35,7 +35,7 @@ import { ProfilModule } from './signed-in/profil.module';
     FormsModule,
     ReactiveFormsModule,
     ProfilModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

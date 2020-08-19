@@ -6,7 +6,8 @@ export interface User {
     username: string,
     pwd: string,
     path?: string,
-    reseaux?: Reseaux
+    reseaux?: Reseaux,
+    description?: string
 }
 
 export interface Reseaux {

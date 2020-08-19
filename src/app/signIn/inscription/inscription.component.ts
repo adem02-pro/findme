@@ -45,7 +45,16 @@ export class InscriptionComponent implements OnInit {
     let user: User = {
       firstname: this.formulaire.value.firstname,
       lastname: this.formulaire.value.lastname, age: this.formulaire.value.age,
-      username: this.formulaire.value.username, pwd: this.formulaire.value.password
+      username: this.formulaire.value.username, pwd: this.formulaire.value.password,
+      reseaux: {
+        facebook: {value: 'Facebook', reseau: ''},
+        instagram: {value: 'Instagram', reseau: ''},
+        mail: {value: 'Mail', reseau: ''},
+        twitter: {value: 'Twitter', reseau: ''},
+        snapchat: {value: 'Snap', reseau: ''},
+        youtube: {value: 'Youtube', reseau: ''}
+      },
+      description: ''
     }
     this.inscriptionService.createUser(user).subscribe(userCreated => {
       if (userCreated) {
