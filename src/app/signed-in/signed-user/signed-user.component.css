@@ -1,0 +1,21 @@
+/* Icones text-color */
+
+i.facebook {
+  color: blue;
+}
+
+i.instagram {
+  color: rgba(236, 98, 128, 0.897);
+}
+
+i.snapchat {
+  color: yellow;
+}
+
+i.twitter {
+  color: rgb(81, 218, 236);
+}
+
+i.youtube {
+  color: red;
+}

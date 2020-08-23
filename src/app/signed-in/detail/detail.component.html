@@ -12,7 +12,7 @@
             </li>
         </ul>
 
-        <form [formGroup]="formulaire" autocomplete="off" (ngSubmit)="signInUser()">
+        <form [formGroup]="formulaire" autocomplete="off" (ngSubmit)="updateUser()">
             <!-- Tab panes -->
             <div class="tab-content">
                 <!-- info form -->
@@ -24,8 +24,8 @@
                         <input class="form-control form-control-sm" type="text" placeholder="prenom" name="firstname" id="firstname" formControlName="firstname">
                     </div>
                     <span class="form-text form-muted text-danger" *ngIf="firstname.errors && (firstname.touched || firstname.dirty)">
-              <p *ngIf="firstname.errors.required">ce champ est obligatoire</p>
-            </span>
+                      <p *ngIf="firstname.errors.required">ce champ est obligatoire</p>
+                    </span>
 
                     <!-- Input nom -->
                     <div class="form-group" [ngClass]="{'has-danger': lastname.invalid && (lastname.touched || lastname.dirty),
@@ -34,8 +34,8 @@
                     </div>
 
                     <span class="form-text form-muted text-danger" *ngIf="lastname.errors && (lastname.touched || lastname.dirty)">
-              <p *ngIf="lastname.errors.required">ce champ est obligatoire</p>
-            </span>
+                      <p *ngIf="lastname.errors.required">ce champ est obligatoire</p>
+                    </span>
 
                     <!-- Input age -->
                     <div class="form-group" [ngClass]="{'has-danger': age.invalid && (age.touched || age.dirty),
@@ -43,26 +43,26 @@
                         <input class="form-control form-control-sm" type="number" placeholder="age" id="age" formControlName="age">
                     </div>
                     <span class="form-text form-muted text-danger" *ngIf="age.errors && (age.touched || age.dirty)">
-              <p *ngIf="age.errors.required">champ est obligatoire</p>
-              <p *ngIf="age.errors.min">vous devez être majeur pour souscrire</p>
-              <p *ngIf="age.errors.max">va évrire ton testament papy (ou mamy)</p>
-            </span>
+                      <p *ngIf="age.errors.required">champ est obligatoire</p>
+                      <p *ngIf="age.errors.min">vous devez être majeur pour souscrire</p>
+                      <p *ngIf="age.errors.max">va évrire ton testament papy (ou mamy)</p>
+                    </span>
 
                     <!-- Input pseudo -->
                     <div class="form-group" [ngClass]="{'has-danger': username.invalid && (username.touched || username.dirty),
-                'border border-success rounded': username.valid && (username.touched || username.dirty)}">
+                                                        'border border-success rounded': username.valid && (username.touched || username.dirty)}">
                         <input class="form-control form-control-sm" type="text" placeholder="pseudo" id="username" formControlName="username">
                     </div>
 
                     <!-- Input mdp -->
                     <div class="form-group" [ngClass]="{'has-danger': password.invalid && (password.touched || password.dirty),
-                'border border-success rounded': password.valid && (password.touched || password.dirty)}">
+                                                        'border border-success rounded': password.valid && (password.touched || password.dirty)}">
                         <input class="form-control form-control-sm" type="password" placeholder="mot de passe" name="password" id="pwd" formControlName="password">
                     </div>
                     <span class="form-text form-muted text-danger" *ngIf="password.errors && (password.touched || password.dirty)">
-              <p *ngIf="password.errors.required">ce champ est obligatoire</p>
-              <p *ngIf="password.errors.minlength">doit contenir au moins {{password.errors.minlength.requiredLength}} ({{ password.errors.minlength.requiredLength - password.errors.minlength.actualLength }} caractères restant) </p>
-            </span>
+                      <p *ngIf="password.errors.required">ce champ est obligatoire</p>
+                      <p *ngIf="password.errors.minlength">doit contenir au moins {{password.errors.minlength.requiredLength}} ({{ password.errors.minlength.requiredLength - password.errors.minlength.actualLength }} caractères restant) </p>
+                    </span>
                 </div>
                 <!-- end info form -->
 
@@ -96,14 +96,17 @@
                                     <td *ngIf="reseau.value && reseau.reseau">
                                         <i class="fab fa-lg fa-fw" [ngClass]="{
                                           'fa-facebook-square facebook': reseau.value === 'Facebook',
-                                          'fa-instagram-square insta': reseau.value === 'Instagram',
-                                          'fas fa-envelope-square mail': reseau.value === 'Mail' ,
-                                          'fa-snapchat-square snap': reseau.value === 'Snapchat' ,
+                                          'fa-instagram-square instagram': reseau.value === 'Instagram',
+                                          'fas fa-envelope-square': reseau.value === 'Mail' ,
+                                          'fa-snapchat-square snapchat': reseau.value === 'Snapchat' ,
                                           'fa-twitter-square twitter': reseau.value === 'Twitter' ,
                                           'fa-youtube-square youtube': reseau.value === 'Youtube'}" aria-hidden="true">
-                                      </i>
+                                        </i>
                                     </td>
-                                    <td *ngIf="reseau.value && reseau.reseau">{{reseau.reseau}}</td>
+                                    <td *ngIf="reseau.value && reseau.reseau" style="display: flex; justify-content: space-between;">
+                                        <p>{{reseau.reseau}}</p>
+                                        <p><i class="fas fa-minus-circle" style="color: red; cursor: pointer;" (click)="removeReseau(reseau)"></i></p>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -114,7 +117,7 @@
                 <!-- description form -->
                 <div class="tab-pane container fade" id="description">
                     <div class="text-area form-group">
-                        <textarea class="form-control" rows="5" id="comment" placeholder="Vous pouvez mettre votre description ici (maximum 100 caractères)"></textarea>
+                        <textarea class="form-control" rows="5" id="comment" placeholder="Vous pouvez mettre votre description ici (maximum 100 caractères)" formControlName="description"></textarea>
                     </div>
                 </div>
                 <!-- end description form -->

@@ -1,11 +1,9 @@
-import { element } from 'protractor';
+import { Router } from '@angular/router';
 import { UpdateServiceService } from './../../services/update-service.service';
 import { LogInService } from 'src/app/services/log-in.service';
-import { SignInService } from './../../services/sign-in.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { debounceTime } from 'rxjs/operators';
-import { User, Reseaux } from 'src/app/model/user';
+import { User } from 'src/app/model/user';
 
 @Component({
   selector: 'app-detail',
@@ -34,13 +32,14 @@ export class DetailComponent implements OnInit {
                     Validators.minLength(8)]
     ],
     reseau: [''],
-    reseauInput: ['']
+    reseauInput: [''],
+    description: ['', [Validators.maxLength(300)]]
   })
 
   constructor(private fb: FormBuilder,
-              private inscriptionService: SignInService,
               private logService: LogInService,
-              private updateService: UpdateServiceService) { }
+              private updateService: UpdateServiceService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.user = this.logService.connectedUser;
@@ -59,17 +58,6 @@ export class DetailComponent implements OnInit {
     })
   }
 
-  get firstname() { return this.formulaire.get('firstname')};
-  get lastname() { return this.formulaire.get('lastname')};
-  get age() { return this.formulaire.get('age')};
-  get username() { return this.formulaire.get('username')};
-  get password() { return this.formulaire.get('password')};
-  get reseau() { return this.formulaire.get('reseau')};
-  get reseauInput() { return this.formulaire.get('reseauInput')};
-
-  signInUser() {}
-
-
   addReseau() {
     if (this.reseau.value && this.reseauInput.value)
     {
@@ -77,11 +65,56 @@ export class DetailComponent implements OnInit {
       let i = this.reseauxTab.findIndex(indexFound);
       this.reseauxTab[i].reseau = this.reseauInput.value;
     }
+    this.reseauInput.reset();
   }
+
+  removeReseau(reseau: {value: string, reseau: string}) {
+    const indexFound = (element: {value: string, reseau: string}) => element.value === reseau.value && element.reseau === reseau.reseau;
+    let i = this.reseauxTab.findIndex(indexFound);
+    this.reseauxTab[i].reseau = '';
+  }
+
+  synchronizeData() {
+    let user = this.logService.connectedUser;
+    let reseaux = user.reseaux;
+    user.firstname = this.firstname.value;
+    user.lastname = this.lastname.value;
+    user.age = this.age.value;
+    user.pwd = this.password.value;
+    user.description = this.description.value;
+
+    reseaux.facebook = this.fillReseaux(reseaux.facebook.value);
+    reseaux.instagram = this.fillReseaux(reseaux.instagram.value);
+    reseaux.mail = this.fillReseaux(reseaux.mail.value);
+    reseaux.twitter = this.fillReseaux(reseaux.twitter.value);
+    reseaux.snapchat = this.fillReseaux(reseaux.snapchat.value);
+    reseaux.youtube = this.fillReseaux(reseaux.youtube.value);
+  }
+
+  fillReseaux(reseau: string): {value: string, reseau: string} {
+    const found = (element: {value: string, reseau: string}) => element.value === reseau;
+    return this.reseauxTab.find(found);
+  }
+
+  updateUser() {
+    this.synchronizeData();
+    let user: User = this.logService.connectedUser;
+    this.updateService.updateUser(user)
+                      .subscribe(
+                        data => {
+                          if(data) this.router.navigate([url]);
+                        }
+                      )
+    let url = '/profil';
+
+  }
+
+  get firstname() { return this.formulaire.get('firstname')};
+  get lastname() { return this.formulaire.get('lastname')};
+  get age() { return this.formulaire.get('age')};
+  get username() { return this.formulaire.get('username')};
+  get password() { return this.formulaire.get('password')};
+  get reseau() { return this.formulaire.get('reseau')};
+  get reseauInput() { return this.formulaire.get('reseauInput')};
+  get description() { return this.formulaire.get('description')};
 }
-// <i class="fab fa-facebook-square"></i>
-// <i class="fab fa-instagram-square"></i>
-// <i class="fas fa-envelope-square"></i>
-// <i class="fab fa-snapchat-square"></i>
-// <i class="fab fa-twitter-square"></i>
-// <i class="fab fa-youtube-square"></i>
