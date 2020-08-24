@@ -1,7 +1,16 @@
 .close-btn {
-    position: absolute;
-    right: 0;
-    left: 480px;
-    z-index: 3;
-    cursor: pointer;
+  position: absolute;
+  right: 2px;
+  top: -3px;
+  z-index: 3;
+  cursor: pointer;
 }
+
+
+/*
+position: absolute;
+right: 3px;
+left: px;
+z-index: 3;
+cursor: pointer;
+top: -2px; */
