@@ -20,6 +20,7 @@ export class LogInService {
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.url)
                 .pipe(
+                  delay(1000),
                   tap(_ => console.log('Users fetched!'),
                   catchError(err => of('Error'))
                   )

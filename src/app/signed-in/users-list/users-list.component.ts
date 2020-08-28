@@ -13,6 +13,7 @@ export class UsersListComponent implements OnInit {
 
   search = new FormControl('', Validators.required);
   users: User[] = [];
+  loadingMode: boolean = false;
   @Output() emitUser = new EventEmitter<User>();
   @Output() showUserProfil = new EventEmitter<boolean>();
 
@@ -25,9 +26,12 @@ export class UsersListComponent implements OnInit {
   }
 
   getUsers() {
+    this.loadingMode = true;
     this.usersService.getUsers().subscribe(
-      (data) => this.users = data
-    )    
+      (data) => this.users = data,
+      (err) => console.log(err),
+      () => this.loadingMode = false
+    )
   }
 
   onSelect(user: User) {

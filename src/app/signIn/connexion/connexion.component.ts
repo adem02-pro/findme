@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ConnexionComponent implements OnInit {
   users: User[];
+  loadWhenConnected: boolean = false;
 
   form = this.fb.group ({
     username: ['', Validators.required],
@@ -29,10 +30,13 @@ export class ConnexionComponent implements OnInit {
   }
 
   login(){
+    this.loadWhenConnected = true;
     this.logService.login(this.users, this.username.value, this.pwd.value).subscribe(
       () => {
         if(this.logService.isLoggedIn) this.router.navigate([this.logService.redirectUrl]);
-      }
+      },
+      () => console.log(),
+      () => this.loadWhenConnected = false
     )
   }
 

@@ -2,40 +2,47 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md img-area" style="height: 440px;">
-                <div class="bg-image"></div>
+          <div class="col-md img-area" style="height: 440px;">
+              <div class="bg-image"></div>
 
-                <div class="bg-text">
-                    <h1 style="font-size: 25px;">Laissez votre marque</h1>
-                    <br>
-                    <p style="font-size: 15px;">Retrouvez les réseaux de vos amis...</p>
-                    <p style="font-size: 15px;">Regroupez tous vos réseaux sur un seul site</p>
-                    <div class="bg-logo">
-                        <img src="assets/images/logo.png" alt="Find Me" style="width: 70px; height: 40px;">
-                    </div>
+              <div class="bg-text">
+                  <h1 style="font-size: 25px;">Laissez votre marque</h1>
+                  <br>
+                  <p style="font-size: 15px;">Retrouvez les réseaux de vos amis...</p>
+                  <p style="font-size: 15px;">Regroupez tous vos réseaux sur un seul site</p>
+                  <div class="bg-logo">
+                      <img src="assets/images/logo.png" alt="Find Me" style="width: 70px; height: 40px;">
+                  </div>
+              </div>
+              <hr class="d-md-none bg-light">
+          </div>
+
+          <div class="col-md sign-in-area" *ngIf="!loadWhenConnected">
+            <div>
+              <h3>Identifiez-vous</h3>
+              <form [formGroup]="form" (ngSubmit)="login()" autocomplete="off">
+                <div class="form-group">
+                  <input class="form-control form-control-sm" type="text" name="username" placeholder="Identifiant" formControlName="username">
                 </div>
-                <hr class="d-md-none bg-light">
-            </div>
+                <div class="form-group">
+                  <input class="form-control form-control-sm" type="password" name="pwd" placeholder="Mot de passe" formControlName="pwd">
+                </div>
 
-            <div class="col-md sign-in-area">
                 <div>
-                    <h3>Identifiez-vous</h3>
-                    <form [formGroup]="form" (ngSubmit)="login()" autocomplete="off">
-                        <div class="form-group">
-                            <input class="form-control form-control-sm" type="text" name="username" placeholder="Identifiant" formControlName="username">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control form-control-sm" type="password" name="pwd" placeholder="Mot de passe" formControlName="pwd">
-                        </div>
-
-                        <div>
-                            <button type="submit" class="btn buttonTextStyle buttonStyle" [disabled]="form.invalid">
-                                Connexion
-                            </button>
-                        </div>
-                    </form>
+                  <button type="submit" class="btn buttonTextStyle buttonStyle" [disabled]="form.invalid">
+                      Connexion
+                  </button>
                 </div>
+              </form>
             </div>
+          </div>
+
+          <div class="col-md sign-in-area" *ngIf="loadWhenConnected">
+            <div class="d-flex align-items-center justify-content-center text-white" style="width: 300px;">
+              <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
+              </div>
+            </div>
+          </div>
         </div>
     </div>
 
