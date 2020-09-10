@@ -15,6 +15,8 @@ export class InscriptionComponent implements OnInit {
 
   usrNameValide: boolean = true;
 
+  error: {name: string, message: string} = {name: '', message: ''}
+
   formulaire = this.fb.group ({
     firstname: ['', Validators.required],
     lastname: ['', Validators.required],
@@ -41,7 +43,7 @@ export class InscriptionComponent implements OnInit {
     this.isUsrValid();
   }
 
-  signInUser() {
+  register() {
     let user: User = {
       firstname: this.formulaire.value.firstname,
       lastname: this.formulaire.value.lastname, age: this.formulaire.value.age,
@@ -56,6 +58,22 @@ export class InscriptionComponent implements OnInit {
       },
       description: ''
     }
+
+    return user
+  }
+
+  signInUser() {
+    let user = this.register();
+    // this.inscriptionService.registerWithUsername(this.username.value, this.password.value)
+    // .then(() => {
+    //   this.router.navigate(['/connexion']);
+    //   this.formulaire.reset();
+    // })
+    // .catch(error => {
+    //   this.error = error;
+    //   this.formulaire.reset();
+    //   this.router.navigate['/inscription']
+    // })
     this.inscriptionService.createUser(user).subscribe(userCreated => {
       if (userCreated) {
         this.auth.getUsers().subscribe()};
@@ -63,6 +81,8 @@ export class InscriptionComponent implements OnInit {
     this.formulaire.reset();
     this.router.navigate(['/connexion']);
   }
+
+
 
   isUsrValid() {
     this.username.valueChanges

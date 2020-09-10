@@ -6,6 +6,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms'
 
+// Firebase
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFirestoreModule } from '@angular/fire/firestore'
+import {environment} from '../environments/environment'
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,6 +34,7 @@ import { ProfilModule } from './signed-in/profil.module';
     ErrorComponentComponent
   ],
   imports: [
+
     BrowserModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
@@ -36,6 +43,9 @@ import { ProfilModule } from './signed-in/profil.module';
     ReactiveFormsModule,
     ProfilModule,
     AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

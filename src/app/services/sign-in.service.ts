@@ -5,6 +5,7 @@ import { User } from './../model/user';
 import { Observable, of, pipe } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
+import {AngularFireAuth} from '@angular/fire/auth'
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +13,27 @@ import { HttpClient } from '@angular/common/http'
 export class SignInService {
 
   private url: string = 'api/users';
+  authState: any = null
 
   constructor(private http: HttpClient,
               private dataService: InMemoryDataService,
-              private authentifiedUsers: LogInService ) { }
+              private authentifiedUsers: LogInService,
+              private afu: AngularFireAuth) {
+    this.afu.authState.subscribe((auth => {
+      this.authState = auth
+    }))
+  }
+
+  registerWithUsername(username: string, password: string) {
+    return this.afu.createUserWithEmailAndPassword(username, password)
+    .then((user) => {
+      this.authState = user
+    })
+    .catch(error => {
+      console.log(error);
+      throw error
+    })
+  }
 
   createUser(user: User): Observable<boolean> {
     return this.http.post<User>(this.url, user).pipe(
