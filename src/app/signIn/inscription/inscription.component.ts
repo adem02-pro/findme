@@ -42,7 +42,7 @@ export class InscriptionComponent implements OnInit {
 
   register() {
     let user: User = {
-      firstname: this.firstname.value, email: '',
+      firstname: this.firstname.value, email: this.email.value,
       lastname: this.lastname.value, age: this.age.value,
       username: this.username.value, pwd: this.password.value,
       reseaux: {
