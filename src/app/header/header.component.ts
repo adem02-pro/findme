@@ -1,6 +1,7 @@
 import { LogInService } from './../services/log-in.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-header',
@@ -10,16 +11,16 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   constructor(public logService: LogInService,
-              private router: Router) { }
+              private router: Router,
+              private afu: AngularFireAuth) { }
 
   ngOnInit(): void {
   }
 
   logout() {
-    this.logService.logout().subscribe(
-      () => {
-        if(!this.logService.isLoggedIn) this.router.navigate([this.logService.redirectUrl]);
-      }
-    )
+    this.afu.signOut()
+    .then(() => {
+      this.router.navigate(['cover'])
+    })
   }
 }

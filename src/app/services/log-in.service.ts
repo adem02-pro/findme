@@ -1,67 +1,54 @@
  import { User } from './../model/user';
-import { HttpClient } from '@angular/common/http';
-import { map, catchError, tap, delay } from 'rxjs/operators';
-import { Observable, pipe, of } from 'rxjs';
+import {  switchMap, map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
+import {AngularFireAuth} from '@angular/fire/auth'
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LogInService {
 
-  private url = 'api/users';
-  isLoggedIn = false;
+  isLoggedIn$: Observable<boolean>;
+  isLoggedOut$: Observable<boolean>
+
   redirectUrl: string;
-  connectedUser: User;
+  connectedUser$: Observable<User>;
 
-  constructor(private http: HttpClient) { }
+  authState: any = null
 
+  constructor(private afu: AngularFireAuth,
+              private asf: AngularFirestore) {
+                this.isLoggedIn$ = this.afu.authState.pipe(map(user => !!user));
+                this.isLoggedOut$ = this.isLoggedIn$.pipe(map(loggedIn => !loggedIn));
 
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.url)
-                .pipe(
-                  delay(1000),
-                  tap(_ => console.log('Users fetched!'),
-                  catchError(err => of('Error'))
-                  )
-                );
-  }
-
-  getUser(id: number | string): Observable<User> {
-    const url = this.url + '/' + id;
-    return this.http.get<User>(url).pipe(
-      catchError(err => {
-        console.log("Une erreur est survenue lors de la recupération de l'utilisateur: " + id);
-        return of(err)
+    this.connectedUser$ = this.afu.authState.pipe(
+      switchMap(user => {
+        if(user) return this.asf.doc<User>(`users/${user.uid}`).valueChanges();
+        else return of(null);
       })
     )
+
+    this.afu.authState.subscribe(auth => this.authState = auth)
   }
 
-  login(users:User[], usr: string, pwd: string): Observable<boolean> {
-    if(this.connectedUser = this.verifyUer(users, usr, pwd)) {
-      return of(true).pipe(
-        delay(2000),
-        tap(bool => {
-          this.redirectUrl = '/profil'
-          this.isLoggedIn = true;
-        })
-      )
-    }
-    else return of(false)
+  getFireUsers() {
+    return this.asf.collection<User>('users').valueChanges();
   }
 
-  logout(): Observable<boolean> {
-    return of(false).pipe(
-      delay(500),
-      tap(bool => {
-        this.isLoggedIn = false;
-        this.redirectUrl = '/connexion';
-      })
-    )
+  get authenticated(): boolean {
+    return this.authState
   }
 
-  verifyUer(users: User[], usr:string, pwd:string): User{
-    const yUser = (user: User) => user.username === usr && user.pwd === pwd;
-    return users.find(yUser);
+  loginWithEmail(email: string, password: string) {
+    return this.afu.signInWithEmailAndPassword(email, password)
+    .then((user) => {
+      this.redirectUrl = '/profil'
+    })
+    .catch(error => {
+      console.log(error);
+      throw error
+    })
   }
 }

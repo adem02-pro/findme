@@ -8,7 +8,7 @@
     </button>
 
     <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
-        <ul class="navbar-nav" *ngIf="!logService.isLoggedIn">
+        <ul class="navbar-nav" *ngIf="logService.isLoggedOut$ | async">
             <li class="nav-item">
                 <a class="nav-link" routerLink="/connexion" routerLinkActive="router-link-active" >Se connecter</a>
             </li>
@@ -16,7 +16,7 @@
                 <a class="nav-link" routerLink="/inscription" routerLinkActive="router-link-active" >S'inscrire</a>
             </li>
         </ul>
-        <ul class="navbar-nav" *ngIf="logService.isLoggedIn">
+        <ul class="navbar-nav" *ngIf="logService.isLoggedIn$ | async">
             <li class="nav-item">
                 <a class="nav-link" (click)="logout()" >Se déconnecter</a>
             </li>

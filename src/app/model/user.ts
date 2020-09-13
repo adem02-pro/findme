@@ -1,9 +1,10 @@
 export interface User {
-    id?: number,
+    id?: string,
     firstname: string,
     lastname: string,
     age: number,
     username: string,
+    email: string
     pwd: string,
     path?: string,
     reseaux?: Reseaux,

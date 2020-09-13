@@ -10,6 +10,8 @@ const routes: Routes = [
   {path: 'detail/:id', component: DetailComponent, canActivate: [AuthGuard]}
 ];
 
+// canActivate: [AuthGuard]
+
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

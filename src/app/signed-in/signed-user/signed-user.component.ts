@@ -1,7 +1,8 @@
-import { UpdateServiceService } from './../../services/update-service.service';
 import { LogInService } from 'src/app/services/log-in.service';
-import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/model/user';
+import { Component, OnInit, Input } from '@angular/core';
+import { User, Reseaux } from 'src/app/model/user';
+import { Observable } from 'rxjs';
+import { AngularFirestoreDocument } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-signed-user',
@@ -10,15 +11,17 @@ import { User } from 'src/app/model/user';
 })
 export class SignedUserComponent implements OnInit {
 
-  connectedUser: User;
-  reseauxTab: {value: string, reseau: string}[];
+  connectedUser$: Observable<User>
+  userReseaux: Reseaux;
+  reseauxTab: any[]
+  userDoc: AngularFirestoreDocument<User>
 
-  constructor(private logService: LogInService,
-              private updateService: UpdateServiceService) { }
+  constructor(private logService: LogInService) {
+
+  }
 
   ngOnInit(): void {
-    this.connectedUser = this.logService.connectedUser;
-    this.reseauxTab = this.updateService.reseauxToTab(this.connectedUser);
+    this.connectedUser$ = this.logService.connectedUser$
   }
 
 }

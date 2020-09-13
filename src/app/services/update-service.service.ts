@@ -15,25 +15,25 @@ export class UpdateServiceService {
   constructor(private http: HttpClient,
               private logService: LogInService) { }
 
-  reseauxToTab(user: User): {value: string, reseau: string}[]{
-    let userReseaux = user.reseaux;
-    let tab: {value: string, reseau: string}[] = [];
-    for (let key in userReseaux) {
-      if (userReseaux.hasOwnProperty(key)) {
-        tab.push(userReseaux[key])
-      }
-    }
-    return tab;
-  }
+  // reseauxToTab(user: User): {value: string, reseau: string}[]{
+  //   let userReseaux = user.reseaux;
+  //   let tab: {value: string, reseau: string}[] = [];
+  //   for (let key in userReseaux) {
+  //     if (userReseaux.hasOwnProperty(key)) {
+  //       tab.push(userReseaux[key])
+  //     }
+  //   }
+  //   return tab;
+  // }
 
-  updateUser(user: User): Observable<boolean> {
-      return this.http.put<User>(this.url + '/' + user.id, user)
-      .pipe(
-        map((response) => true),
-        catchError(err =>{
-          console.log(err);
-          return of(false)
-        })
-      )
-  }
+  // updateUser(user: User): Observable<boolean> {
+  //     return this.http.put<User>(this.url + '/' + user.id, user)
+  //     .pipe(
+  //       map((response) => true),
+  //       catchError(err =>{
+  //         console.log(err);
+  //         return of(false)
+  //       })
+  //     )
+  // }
 }

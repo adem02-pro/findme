@@ -1,9 +1,7 @@
-import { LogInService } from './../../services/log-in.service';
 import { User } from './../../model/user';
 import { SignInService } from './../../services/sign-in.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { debounceTime, distinctUntilChanged } from "rxjs/operators"
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +11,6 @@ import { Router } from '@angular/router';
 })
 export class InscriptionComponent implements OnInit {
 
-  usrNameValide: boolean = true;
 
   error: {name: string, message: string} = {name: '', message: ''}
 
@@ -22,8 +19,9 @@ export class InscriptionComponent implements OnInit {
     lastname: ['', Validators.required],
     age: ['', [Validators.required,
                Validators.min(18),
-               Validators.max(120)]
+               Validators.max(150)]
     ],
+    email: ['', Validators.required],
     username: ['', [Validators.required,
                     Validators.minLength(4),
                     Validators.maxLength(30)]
@@ -35,19 +33,18 @@ export class InscriptionComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private inscriptionService: SignInService,
-              private auth: LogInService,
               private router: Router
-             ) { }
+             ) {
+  }
 
   ngOnInit(): void {
-    this.isUsrValid();
   }
 
   register() {
     let user: User = {
-      firstname: this.formulaire.value.firstname,
-      lastname: this.formulaire.value.lastname, age: this.formulaire.value.age,
-      username: this.formulaire.value.username, pwd: this.formulaire.value.password,
+      firstname: this.firstname.value, email: '',
+      lastname: this.lastname.value, age: this.age.value,
+      username: this.username.value, pwd: this.password.value,
       reseaux: {
         facebook: {value: 'Facebook', reseau: ''},
         instagram: {value: 'Instagram', reseau: ''},
@@ -64,41 +61,24 @@ export class InscriptionComponent implements OnInit {
 
   signInUser() {
     let user = this.register();
-    // this.inscriptionService.registerWithUsername(this.username.value, this.password.value)
-    // .then(() => {
-    //   this.router.navigate(['/connexion']);
-    //   this.formulaire.reset();
-    // })
-    // .catch(error => {
-    //   this.error = error;
-    //   this.formulaire.reset();
-    //   this.router.navigate['/inscription']
-    // })
-    this.inscriptionService.createUser(user).subscribe(userCreated => {
-      if (userCreated) {
-        this.auth.getUsers().subscribe()};
-    });
-    this.formulaire.reset();
-    this.router.navigate(['/connexion']);
+    this.inscriptionService.registerWithUsername(this.email.value, this.password.value)
+    .then(() => {
+      this.formulaire.reset();
+      this.router.navigate(['/connexion']);
+    })
+    .then(() => {
+      this.inscriptionService.addUserToCollection(user);
+    })
+    .catch(error => {
+      this.error = error;
+      this.formulaire.reset();
+    })
   }
-
-
-
-  isUsrValid() {
-    this.username.valueChanges
-    .pipe(debounceTime(150))
-    .subscribe(
-      (usr) => {
-        this.inscriptionService.verifyUsrNameValidity(usr)
-        .subscribe(data => this.usrNameValide = data)
-      }
-    )
-  }
-
 
   get firstname() { return this.formulaire.get('firstname')};
   get lastname() { return this.formulaire.get('lastname')};
   get age() { return this.formulaire.get('age')};
   get username() { return this.formulaire.get('username')};
   get password() { return this.formulaire.get('password')};
+  get email() { return this.formulaire.get('email')};
 }

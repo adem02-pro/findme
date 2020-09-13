@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="user">
     <h3 class="text-white mb-4 text-center">@{{user.username}}</h3>
     <div class="card-container">
         <div class="close-btn" (click)="close()">
@@ -26,7 +26,7 @@
             <!-- end front panel -->
             <div class="back">
                 <div class="header">
-                    <h5 class="motto"></h5>
+                  <h5 class="motto">Vanité des vanités, dit l’Ecclésiaste, tout est vanité ! </h5>
                 </div>
                 <div class="content">
                     <div class="main">
@@ -34,26 +34,46 @@
                         <p class="text-center"></p>
 
                         <div class="stats-container">
-                            <div class="stats">
-                                <h4>235</h4>
-                                <p>
-                                    Followers
-                                </p>
-                            </div>
-                            <div class="stats">
-                                <h4>114</h4>
-                                <p>
-                                    Following
-                                </p>
-                            </div>
-                            <div class="stats">
-                                <h4>35</h4>
-                                <p>
-                                    Projects
-                                </p>
+                          <div class="container"></div>
+                          <div class="d-flex flex-column align-items-center overflow-auto" style="max-height: 200px; box-sizing: border-box;">
+
+                              <div style="display: flex; align-items: baseline;" *ngIf="user.reseaux as reseau">
+                                <i style="align-self: flex-start; margin-top: 5px;" class="fab fa-facebook-square facebook fa-lg fa-fw"></i>
+                                <p *ngIf="!reseau.facebook.reseau" style="font-size: 85%; font-style: italic; color: red;">réseau non renseingné</p>
+                                <p *ngIf="reseau.facebook.reseau" style="align-self: center;" >{{reseau.facebook.reseau}}</p>
+                              </div>
+
+                              <div style="display: flex; align-items: baseline;" *ngIf="user.reseaux as reseau">
+                                <i style="align-self: flex-start; margin-top: 5px;" class="fab fa-instagram-square instagram fa-lg fa-fw"></i>
+                                <p *ngIf="!reseau.instagram.reseau" style="font-size: 85%; font-style: italic; color: red;">réseau non renseingné</p>
+                                <p *ngIf="reseau.instagram.reseau" style="align-self: center;" >{{reseau.instagram.reseau}}</p>
+                              </div>
+
+                              <div style="display: flex; align-items: baseline;" *ngIf="user.reseaux as reseau">
+                                <i style="align-self: flex-start; margin-top: 5px;" class="fas fa-envelope-square fa-lg fa-fw"></i>
+                                <p *ngIf="!reseau.mail.reseau" style="font-size: 85%; font-style: italic; color: red;">réseau non renseingné</p>
+                                <p *ngIf="reseau.mail.reseau" style="align-self: center;" >{{reseau.mail.reseau}}</p>
+                              </div>
+
+                              <div style="display: flex; align-items: baseline;" *ngIf="user.reseaux as reseau">
+                                <i style="align-self: flex-start; margin-top: 5px;" class="fab fa-snapchat-square snapchat facebook fa-lg fa-fw"></i>
+                                <p *ngIf="!reseau.snapchat.reseau" style="font-size: 85%; font-style: italic; color: red;">réseau non renseingné</p>
+                                <p *ngIf="reseau.snapchat.reseau" style="align-self: center;" >{{reseau.snapchat.reseau}}</p>
+                              </div>
+
+                              <div style="display: flex; align-items: baseline;" *ngIf="user.reseaux as reseau">
+                                <i style="align-self: flex-start; margin-top: 5px;" class="fab fa-twitter-square twitter fa-lg fa-fw"></i>
+                                <p *ngIf="!reseau.twitter.reseau" style="font-size: 85%; font-style: italic; color: red;">réseau non renseingné</p>
+                                <p *ngIf="reseau.twitter.reseau" style="align-self: center;" >{{reseau.twitter.reseau}}</p>
+                              </div>
+
+                              <div style="display: flex; align-items: baseline;" *ngIf="user.reseaux as reseau">
+                                <i style="align-self: flex-start; margin-top: 5px;" class="fab fa-youtube-square youtube fa-lg fa-fw"></i>
+                                <p *ngIf="!reseau.youtube.reseau" style="font-size: 85%; font-style: italic; color: red;">réseau non renseingné</p>
+                                <p *ngIf="reseau.youtube.reseau" style="align-self: center;" >{{reseau.youtube.reseau}}</p>
+                              </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div class="footer">

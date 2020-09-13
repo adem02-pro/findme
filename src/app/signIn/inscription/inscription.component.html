@@ -1,6 +1,11 @@
 <div class="container">
     <div class="content">
         <h1 class="inscrip-title">Inscription</h1>
+
+        <div class="invalid-email alert alert-danger w-50" *ngIf="error.message" style="min-width: 300px; font-size: 0.8em;">
+          {{error.message}}
+        </div>
+
         <div class="img-path border-0 rounded-circle">
             <img src="assets/images/ar-camera.png" style="width: 30px; height: 30px;">
         </div>
@@ -23,8 +28,8 @@
             </div>
 
             <span class="form-text form-muted text-danger" *ngIf="lastname.errors && (lastname.touched || lastname.dirty)">
-                    <p *ngIf="lastname.errors.required">ce champ est obligatoire</p>
-                </span>
+              <p *ngIf="lastname.errors.required">ce champ est obligatoire</p>
+          </span>
 
             <!-- Input age -->
             <div class="form-group" [ngClass]="{'has-danger': age.invalid && (age.touched || age.dirty),
@@ -32,10 +37,18 @@
                 <input class="form-control form-control-sm" type="number" placeholder="age" id="age" formControlName="age">
             </div>
             <span class="form-text form-muted text-danger" *ngIf="age.errors && (age.touched || age.dirty)">
-                    <p *ngIf="age.errors.required">champ est obligatoire</p>
-                    <p *ngIf="age.errors.min">vous devez être majeur pour souscrire</p>
-                    <p *ngIf="age.errors.max">va évrire ton testament papy (ou mamy)</p>
-                </span>
+              <p *ngIf="age.errors.required">champ est obligatoire</p>
+              <p *ngIf="age.errors.min">vous devez être majeur pour souscrire</p>
+              <p *ngIf="age.errors.max">age invalide</p>
+            </span>
+
+            <div class="form-group" [ngClass]="{'has-danger': email.invalid && (email.touched || email.dirty),
+                                'border border-success rounded': email.valid && (email.touched || email.dirty)}">
+                <input class="form-control form-control-sm" type="email" placeholder="Email" id="email" formControlName="email" required>
+            </div>
+            <span class="form-text form-muted text-danger" *ngIf="(email.errors && (email.touched || email.dirty))">
+                <p *ngIf="email.errors.required">ce champ est obligatoire</p>
+            </span>
 
             <!-- Input pseudo -->
             <div class="form-group" [ngClass]="{'has-danger': username.invalid && (username.touched || username.dirty),
@@ -47,7 +60,6 @@
                     <p *ngIf="username.errors.minlength">{{username.errors.minlength.requiredLength}} minimum requis</p>
                     <p *ngIf="username.errors.maxlength">{{username.errors.maxlength.requiredLength}} maximum requis</p>
                 </span>
-            <span class="form-text form-muted text-danger" *ngIf="!usrNameValide">pseudo déjà pris</span>
 
             <!-- Input mdp -->
             <div class="form-group" [ngClass]="{'has-danger': password.invalid && (password.touched || password.dirty),
@@ -60,7 +72,7 @@
                 </span>
 
             <!-- Bouton de validation -->
-            <button class="d-block btn btn-sm buttonStyle text-white" style="width: 120px; margin: auto;" type="submit" [disabled]="formulaire.invalid || !usrNameValide">
+            <button class="d-block btn btn-sm buttonStyle text-white" style="width: 120px; margin: auto;" type="submit" [disabled]="formulaire.invalid">
                     S'incrire
                 </button>
         </form>

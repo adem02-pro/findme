@@ -18,26 +18,29 @@ export class ConnexionComponent implements OnInit {
     pwd: ['', Validators.required]
   })
 
+  error: {name: string, message: string} = {name: '', message: ''}
+
   constructor(private fb: FormBuilder,
               private logService: LogInService,
               private router: Router) {
   }
 
   ngOnInit(): void {
-    this.logService.getUsers().subscribe(
-      data => this.users = data
-    );
   }
 
   login(){
     this.loadWhenConnected = true;
-    this.logService.login(this.users, this.username.value, this.pwd.value).subscribe(
-      () => {
-        if(this.logService.isLoggedIn) this.router.navigate([this.logService.redirectUrl]);
-      },
-      () => console.log(),
-      () => this.loadWhenConnected = false
-    )
+
+    this.logService.loginWithEmail(this.username.value, this.pwd.value)
+    .then(() => {
+      this.form.reset();
+      this.router.navigate([this.logService.redirectUrl]);
+      this.loadWhenConnected = false
+    })
+    .catch(error => {
+      console.log(error);
+      this.form.reset();
+    })
   }
 
   get username() {return this.form.get('username')}

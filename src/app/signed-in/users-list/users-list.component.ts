@@ -1,8 +1,9 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Validators, FormControl } from '@angular/forms';
 import { User } from 'src/app/model/user';
 import { LogInService } from 'src/app/services/log-in.service';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-users-list',
@@ -12,31 +13,20 @@ import { ActivatedRoute } from '@angular/router';
 export class UsersListComponent implements OnInit {
 
   search = new FormControl('', Validators.required);
-  users: User[] = [];
+  @Input() users: Observable<User[]>;
   loadingMode: boolean = false;
-  @Output() emitUser = new EventEmitter<User>();
   @Output() showUserProfil = new EventEmitter<boolean>();
+  @Output() selectedUser = new EventEmitter<User>()
 
-  constructor(private usersService: LogInService,
-              private route: ActivatedRoute,
-              ) { }
+
+  constructor() { }
 
   ngOnInit(): void {
-    this.getUsers();
-  }
-
-  getUsers() {
-    this.loadingMode = true;
-    this.usersService.getUsers().subscribe(
-      (data) => this.users = data,
-      (err) => console.log(err),
-      () => this.loadingMode = false
-    )
   }
 
   onSelect(user: User) {
-    this.emitUser.emit(user);
     this.showUserProfil.emit(true);
+    this.selectedUser.emit(user);
   }
 
 }

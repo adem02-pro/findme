@@ -1,15 +1,13 @@
 <section class="container">
     <div class="row" style="margin: 20px 0;">
-
         <div class="col-md">
-            <app-users-list (emitUser)="emittedUser($event)" (showUserProfil)="showUser($event)"></app-users-list>
+            <app-users-list [users]="users$" (showUserProfil)="showUser($event)" (selectedUser)='selectUser($event)'></app-users-list>
             <hr class="d-md-none bg-light">
         </div>
 
         <div class="col-md">
             <app-signed-user *ngIf="!userProfilShown"></app-signed-user>
-            <app-user-profil [user]="selectedUser" (showUserProfil)="emittedClose($event)" *ngIf="selectedUser && userProfilShown"></app-user-profil>
+            <app-user-profil (showUserProfil)="emittedClose($event)" [user]='selectedUser'  *ngIf="userProfilShown"></app-user-profil>
         </div>
-
     </div>
 </section>

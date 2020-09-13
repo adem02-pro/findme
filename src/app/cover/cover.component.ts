@@ -7,13 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cover.component.css']
 })
 export class CoverComponent implements OnInit {
-  url: string;
-  linkName: string
-  constructor(private logService: LogInService) { }
+
+  isLoggedIn$ = this.logService.isLoggedIn$
+  isLoggedOut$ = this.logService.isLoggedOut$
+
+  constructor(public logService: LogInService) { }
 
   ngOnInit(): void {
-    this.url = this.logService.isLoggedIn ? "/profil" : "/connexion";
-    this.linkName = this.logService.isLoggedIn ? "profil" : "commencer"
   }
 
 }

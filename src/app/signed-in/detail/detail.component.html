@@ -79,7 +79,8 @@
                             <input class="form-control" type="text" placeholder="ex: lalodem" formControlName="reseauInput">
                         </div>
                         <div class="plus-img">
-                            <img src="assets/images/plus.png" alt="" style="width: 30px; height: 30px; cursor: pointer;" (click)="addReseau()">
+                            <img src="assets/images/plus.png" alt="" style="width: 30px; height: 30px; cursor: pointer;">
+                            <!-- addReseau() -->
                         </div>
                     </div>
 
@@ -105,7 +106,8 @@
                                     </td>
                                     <td *ngIf="reseau.value && reseau.reseau" style="display: flex; justify-content: space-between;">
                                         <p>{{reseau.reseau}}</p>
-                                        <p><i class="fas fa-minus-circle" style="color: red; cursor: pointer;" (click)="removeReseau(reseau)"></i></p>
+                                        <p><i class="fas fa-minus-circle" style="color: red; cursor: pointer;"></i></p>
+                                        <!-- removeReseau(reseau) -->
                                     </td>
                                 </tr>
                             </tbody>

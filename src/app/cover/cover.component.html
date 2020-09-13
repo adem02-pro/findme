@@ -3,7 +3,12 @@
         <h5 class="display-4">Laissez votre marque !</h5>
         <p class="lead lead-font">Regroupez tous vos réseaux en quelques clics</p>
         <p class="lead my-5">
-            <a routerLink="{{url}}" routerLinkActive="router-link-active" class="btn btn-outline-light btn-sm">{{linkName}}</a>
+          <span *ngIf="isLoggedIn$ | async">
+            <a routerLink="/profil" routerLinkActive="router-link-active" class="btn btn-outline-light btn-sm">profil</a>
+          </span>
+          <span *ngIf="isLoggedOut$ | async">
+            <a routerLink="/connexion" routerLinkActive="router-link-active" class="btn btn-outline-light btn-sm">commencer</a>
+          </span>
         </p>
     </div>
 </div>

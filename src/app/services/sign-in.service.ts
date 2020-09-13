@@ -1,33 +1,33 @@
-import { LogInService } from './log-in.service';
-import { InMemoryDataService } from './../in-memory-data.service';
 import { map, catchError } from 'rxjs/operators';
 import { User } from './../model/user';
 import { Observable, of, pipe } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
-import {AngularFireAuth} from '@angular/fire/auth'
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore'
 
 @Injectable({
   providedIn: 'root'
 })
 export class SignInService {
 
-  private url: string = 'api/users';
-  authState: any = null
+  authState: any = null;
+  private usersCollection: AngularFirestoreCollection<User>;
+  users: Observable<User[]>;
 
-  constructor(private http: HttpClient,
-              private dataService: InMemoryDataService,
-              private authentifiedUsers: LogInService,
-              private afu: AngularFireAuth) {
+  constructor(private afu: AngularFireAuth,
+              private asf: AngularFirestore) {
     this.afu.authState.subscribe((auth => {
       this.authState = auth
-    }))
+    }));
+    this.usersCollection = this.asf.collection<User>('users');
+    this.users = this.usersCollection.valueChanges();
   }
 
   registerWithUsername(username: string, password: string) {
     return this.afu.createUserWithEmailAndPassword(username, password)
     .then((user) => {
       this.authState = user
+      console.log(this.authState);
     })
     .catch(error => {
       console.log(error);
@@ -35,24 +35,8 @@ export class SignInService {
     })
   }
 
-  createUser(user: User): Observable<boolean> {
-    return this.http.post<User>(this.url, user).pipe(
-      map(resp => true),
-      catchError(err => {
-        console.log("Une erreur est survenue lors de lacreation d'un nouveau héro!");
-        return of(err)
-      })
-    )
-  }
-
-  verifyUsrNameValidity(usrName: string): Observable<boolean> {
-    const sameUsername = (user: User) => usrName !== user.username;
-    return this.authentifiedUsers.getUsers().pipe(
-      map( data => data.every(sameUsername)),
-      catchError(err => {
-        console.log(err);
-        return of(false);
-      })
-    );
+  addUserToCollection(user: User) {
+    this.authState && (user.id = this.authState.user.uid);
+    this.usersCollection.doc(user.id).set(user);
   }
 }
