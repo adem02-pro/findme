@@ -14,7 +14,7 @@ export class ConnexionComponent implements OnInit {
   loadWhenConnected: boolean = false;
 
   form = this.fb.group ({
-    username: ['', Validators.required],
+    email: ['', Validators.required],
     pwd: ['', Validators.required]
   })
 
@@ -31,7 +31,7 @@ export class ConnexionComponent implements OnInit {
   login(){
     this.loadWhenConnected = true;
 
-    this.logService.loginWithEmail(this.username.value, this.pwd.value)
+    this.logService.loginWithEmail(this.email.value, this.pwd.value)
     .then(() => {
       this.form.reset();
       this.router.navigate([this.logService.redirectUrl]);
@@ -43,6 +43,6 @@ export class ConnexionComponent implements OnInit {
     })
   }
 
-  get username() {return this.form.get('username')}
+  get email() {return this.form.get('username')}
   get pwd() {return this.form.get('pwd')}
 }
