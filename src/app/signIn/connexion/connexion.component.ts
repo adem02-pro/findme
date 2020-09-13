@@ -29,20 +29,21 @@ export class ConnexionComponent implements OnInit {
   }
 
   login(){
-    this.loadWhenConnected = true;
 
     this.logService.loginWithEmail(this.email.value, this.pwd.value)
     .then(() => {
       this.form.reset();
-      this.router.navigate([this.logService.redirectUrl]);
-      this.loadWhenConnected = false
+      this.router.navigate(['profil']);
+      this.loadWhenConnected = true;
     })
     .catch(error => {
       console.log(error);
       this.form.reset();
+    }).finally(() => {
+      this.loadWhenConnected = false
     })
   }
 
-  get email() {return this.form.get('username')}
+  get email() {return this.form.get('email')}
   get pwd() {return this.form.get('pwd')}
 }
