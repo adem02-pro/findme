@@ -64,7 +64,7 @@ export class InscriptionComponent implements OnInit {
     this.inscriptionService.registerWithUsername(this.email.value, this.password.value)
     .then(() => {
       this.formulaire.reset();
-      this.router.navigate(['/connexion']);
+      this.router.navigate(['/profil']);
     })
     .then(() => {
       this.inscriptionService.addUserToCollection(user);
