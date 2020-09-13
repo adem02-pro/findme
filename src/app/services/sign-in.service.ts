@@ -35,6 +35,10 @@ export class SignInService {
     })
   }
 
+  get registered(): boolean {
+    return this.authState
+  }
+
   addUserToCollection(user: User) {
     this.authState && (user.id = this.authState.user.uid);
     this.usersCollection.doc(user.id).set(user);
