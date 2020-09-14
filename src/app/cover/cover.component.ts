@@ -1,5 +1,5 @@
-import { LogInService } from 'src/app/services/log-in.service';
 import { Component, OnInit } from '@angular/core';
+import { FindmeService } from '../services/findme.service';
 
 @Component({
   selector: 'app-cover',
@@ -8,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoverComponent implements OnInit {
 
-  isLoggedIn$ = this.logService.isLoggedIn$
-  isLoggedOut$ = this.logService.isLoggedOut$
+  isLoggedIn$ = this.service.isLoggedIn$
+  isLoggedOut$ = this.service.isLoggedOut$
 
-  constructor(public logService: LogInService) { }
+  constructor(public service: FindmeService) { }
 
   ngOnInit(): void {
   }

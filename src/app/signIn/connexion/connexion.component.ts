@@ -1,8 +1,7 @@
-import { User } from './../../model/user';
-import { LogInService } from './../../services/log-in.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FindmeService } from 'src/app/services/findme.service';
 
 @Component({
   selector: 'app-connexion',
@@ -10,7 +9,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./connexion.component.css']
 })
 export class ConnexionComponent implements OnInit {
-  users: User[];
   loadWhenConnected: boolean = false;
 
   form = this.fb.group ({
@@ -18,10 +16,12 @@ export class ConnexionComponent implements OnInit {
     pwd: ['', Validators.required]
   })
 
+  auth: any
+
   error: {name: string, message: string} = {name: '', message: ''}
 
   constructor(private fb: FormBuilder,
-              private logService: LogInService,
+              private service: FindmeService,
               private router: Router) {
   }
 
@@ -29,19 +29,18 @@ export class ConnexionComponent implements OnInit {
   }
 
   login(){
-
-    this.logService.loginWithEmail(this.email.value, this.pwd.value)
+    this.loadWhenConnected = true
+    this.service.loginWithEmail(this.email.value, this.pwd.value)
     .then(() => {
+      this.router.navigate([this.service.redirectUrl])
       this.form.reset();
-      this.router.navigate(['profil']);
-      this.loadWhenConnected = true;
+      console.log(this.service.redirectUrl);
     })
     .catch(error => {
       console.log(error);
       this.form.reset();
-    }).finally(() => {
-      this.loadWhenConnected = false
     })
+    this.auth = this.service.authenticated
   }
 
   get email() {return this.form.get('email')}

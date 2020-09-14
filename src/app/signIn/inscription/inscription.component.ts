@@ -1,8 +1,8 @@
 import { User } from './../../model/user';
-import { SignInService } from './../../services/sign-in.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FindmeService } from 'src/app/services/findme.service';
 
 @Component({
   selector: 'app-inscription',
@@ -32,7 +32,7 @@ export class InscriptionComponent implements OnInit {
   })
 
   constructor(private fb: FormBuilder,
-              private inscriptionService: SignInService,
+              private service: FindmeService,
               private router: Router
              ) {
   }
@@ -61,13 +61,13 @@ export class InscriptionComponent implements OnInit {
 
   signInUser() {
     let user = this.register();
-    this.inscriptionService.registerWithUsername(this.email.value, this.password.value)
+    this.service.registerWithUsername(this.email.value, this.password.value)
     .then(() => {
       this.formulaire.reset();
-      this.router.navigate(['/profil']);
     })
     .then(() => {
-      this.inscriptionService.addUserToCollection(user);
+      this.service.addUserToCollection(user);
+      this.router.navigate([this.service.redirectUrl])
     })
     .catch(error => {
       this.error = error;

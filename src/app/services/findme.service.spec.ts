@@ -1,16 +1,16 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { FireDataService } from './fire-data.service';
+import { FindmeService } from './findme.service';
 
-describe('Service: FireData', () => {
+describe('Service: Findme', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [FireDataService]
+      providers: [FindmeService]
     });
   });
 
-  it('should ...', inject([FireDataService], (service: FireDataService) => {
+  it('should ...', inject([FindmeService], (service: FindmeService) => {
     expect(service).toBeTruthy();
   }));
 });

@@ -1,8 +1,7 @@
-import { LogInService } from 'src/app/services/log-in.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { User, Reseaux } from 'src/app/model/user';
+import { User } from 'src/app/model/user';
 import { Observable } from 'rxjs';
-import { AngularFirestoreDocument } from '@angular/fire/firestore';
+import { FindmeService } from 'src/app/services/findme.service';
 
 @Component({
   selector: 'app-signed-user',
@@ -12,16 +11,11 @@ import { AngularFirestoreDocument } from '@angular/fire/firestore';
 export class SignedUserComponent implements OnInit {
 
   connectedUser$: Observable<User>
-  userReseaux: Reseaux;
-  reseauxTab: any[]
-  userDoc: AngularFirestoreDocument<User>
 
-  constructor(private logService: LogInService) {
-
-  }
+  constructor(private service: FindmeService) {}
 
   ngOnInit(): void {
-    this.connectedUser$ = this.logService.connectedUser$
+    this.connectedUser$ = this.service.authenticatedUserData();
   }
 
 }

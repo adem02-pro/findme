@@ -1,6 +1,4 @@
 import { Router } from '@angular/router';
-import { UpdateServiceService } from './../../services/update-service.service';
-import { LogInService } from 'src/app/services/log-in.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/model/user';
@@ -37,8 +35,6 @@ export class DetailComponent implements OnInit {
   })
 
   constructor(private fb: FormBuilder,
-              private logService: LogInService,
-              private updateService: UpdateServiceService,
               private router: Router) { }
 
   ngOnInit(): void {

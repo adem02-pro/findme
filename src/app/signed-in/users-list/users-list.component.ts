@@ -1,8 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Validators, FormControl } from '@angular/forms';
 import { User } from 'src/app/model/user';
-import { LogInService } from 'src/app/services/log-in.service';
-import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Component({

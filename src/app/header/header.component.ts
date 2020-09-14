@@ -1,7 +1,6 @@
-import { LogInService } from './../services/log-in.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { FindmeService } from '../services/findme.service';
 
 @Component({
   selector: 'app-header',
@@ -10,17 +9,16 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public logService: LogInService,
-              private router: Router,
-              private afu: AngularFireAuth) { }
+  constructor(public service: FindmeService,
+              private router: Router) { }
 
   ngOnInit(): void {
   }
 
   logout() {
-    this.afu.signOut()
+    this.service.logOut()
     .then(() => {
-      this.router.navigate(['cover'])
+      this.router.navigate([this.service.redirectUrl])
     })
   }
 }

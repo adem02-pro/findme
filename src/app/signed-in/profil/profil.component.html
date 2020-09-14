@@ -1,4 +1,4 @@
-<section class="container">
+<section class="container" *ngIf="(users$ | async)">
     <div class="row" style="margin: 20px 0;">
         <div class="col-md">
             <app-users-list [users]="users$" (showUserProfil)="showUser($event)" (selectedUser)='selectUser($event)'></app-users-list>
@@ -11,3 +11,8 @@
         </div>
     </div>
 </section>
+
+<div class="d-flex justify-content-center align-items-center text-white" *ngIf="!(users$ | async)" style="height: 100vh;">
+  <p>patientez...</p>
+</div>
+
