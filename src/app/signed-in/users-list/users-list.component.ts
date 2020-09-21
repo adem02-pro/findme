@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Validators, FormControl } from '@angular/forms';
 import { User } from 'src/app/model/user';
 import { Observable } from 'rxjs';
+import { FindmeService } from 'src/app/services/findme.service';
 
 @Component({
   selector: 'app-users-list',
@@ -12,14 +13,16 @@ export class UsersListComponent implements OnInit {
 
   search = new FormControl('', Validators.required);
   @Input() users: Observable<User[]>;
+  connectedUser: Observable<User>
   loadingMode: boolean = false;
   @Output() showUserProfil = new EventEmitter<boolean>();
   @Output() selectedUser = new EventEmitter<User>()
 
 
-  constructor() { }
+  constructor(private service: FindmeService) { }
 
   ngOnInit(): void {
+    this.connectedUser = this.service.authenticatedUserData()
   }
 
   onSelect(user: User) {

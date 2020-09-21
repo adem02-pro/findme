@@ -10,8 +10,8 @@
 
 <div class="container text-white" *ngIf="loadingMode == false">
     <ul *ngFor="let user of users | async;">
-        <li class="container-fluid" (click)="onSelect(user)">
-            <div class="display-users">
+        <li class="container-fluid" (click)="onSelect(user)" *ngIf="user.id !== (connectedUser | async).id">
+            <div class="display-users" >
                 <img style="display: block;" class="border border-0 rounded-circle" src="{{user.path}}" alt="" style="width: 40px; height: 40px;">
                 <p class="username">@{{user.username}}</p>
             </div>
