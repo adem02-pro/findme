@@ -19,6 +19,8 @@ export class ProfilComponent implements OnInit {
 
   ngOnInit(): void {
     this.users$ = this.service.getFireUsers();
+    console.log(this.service.authenticated);
+
   }
 
   emittedClose(bool: boolean) {

@@ -30,6 +30,8 @@ constructor(private afu: AngularFireAuth,
   this.isLoggedOut$ = this.isLoggedIn$.pipe(map(loggedIn => !loggedIn));
 
   this.afu.authState.subscribe(auth => this.authState = auth);
+
+  this.usersCollection = this.afs.collection<User>('users')
 }
 
   // From Login Service
@@ -86,7 +88,7 @@ constructor(private afu: AngularFireAuth,
 
   addUserToCollection(user: User) {
     this.authState && (user.id = this.authState.user.uid);
-    this.usersCollection.doc(user.id).set(user);
+    this.usersCollection.doc(user.id).set(user)
   }
   // End of sign In methods
 }
